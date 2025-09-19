@@ -103,3 +103,86 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Poker Theme Colors */
+@layer utilities {
+  .casino-gold {
+    color: #f59e0b;
+  }
+  
+  .casino-green {
+    color: #10b981;
+  }
+  
+  .crypto-cyan {
+    color: #06b6d4;
+  }
+  
+  .bg-casino-gold {
+    background-color: #f59e0b;
+  }
+  
+  .bg-casino-green {
+    background-color: #10b981;
+  }
+  
+  .bg-crypto-cyan {
+    background-color: #06b6d4;
+  }
+  
+  .border-casino-gold {
+    border-color: #f59e0b;
+  }
+  
+  .border-casino-green {
+    border-color: #10b981;
+  }
+  
+  .border-crypto-cyan {
+    border-color: #06b6d4;
+  }
+  
+  .text-casino-gold {
+    color: #f59e0b;
+  }
+  
+  .text-casino-green {
+    color: #10b981;
+  }
+  
+  .text-crypto-cyan {
+    color: #06b6d4;
+  }
+  
+  /* Felt texture background */
+  .felt-texture {
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+      linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+  
+  /* Encryption pulse animation */
+  .encrypt-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* Button variants */
+  .btn-casino {
+    @apply bg-gradient-to-r from-casino-gold to-crypto-cyan text-white font-semibold py-2 px-4 rounded-lg hover:from-casino-gold/90 hover:to-crypto-cyan/90 transition-all duration-200;
+  }
+  
+  .btn-crypto {
+    @apply bg-gradient-to-r from-crypto-cyan to-casino-green text-white font-semibold py-2 px-4 rounded-lg hover:from-crypto-cyan/90 hover:to-casino-green/90 transition-all duration-200;
+  }
+}

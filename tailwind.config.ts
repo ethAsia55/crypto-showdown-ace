@@ -57,6 +57,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Poker theme colors
+        "casino-gold": "#f59e0b",
+        "casino-green": "#10b981", 
+        "crypto-cyan": "#06b6d4",
       },
       borderRadius: {
         lg: "var(--radius)",

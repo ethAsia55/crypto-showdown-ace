@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, DollarSign, Shield, Lock, Eye, EyeOff } from "lucide-react";
-import { useAccount, useContractRead, useContractWrite, useWaitForTransaction } from 'wagmi';
+import { useAccount, useContractRead, useContractWrite } from 'wagmi';
 import { contractABI, contractAddress } from '@/lib/contract';
 import { parseEther, encodePacked, keccak256 } from 'viem';
 import { useState, useEffect } from 'react';
@@ -48,7 +48,7 @@ const PokerTable = () => {
     enabled: !!gameId,
   });
 
-  const { write: createGame, data: createGameData } = useContractWrite({
+  const { write: createGame, isPending: isCreatingGame } = useContractWrite({
     address: contractAddress,
     abi: contractABI,
     functionName: 'createGame',
@@ -56,7 +56,7 @@ const PokerTable = () => {
     value: parseEther(betAmount),
   });
 
-  const { write: joinGame, data: joinGameData } = useContractWrite({
+  const { write: joinGame, isPending: isJoiningGame } = useContractWrite({
     address: contractAddress,
     abi: contractABI,
     functionName: 'joinGame',
@@ -64,35 +64,18 @@ const PokerTable = () => {
     value: parseEther(betAmount),
   });
 
-  const { write: makeMove, data: makeMoveData } = useContractWrite({
+  const { write: makeMove, isPending: isMakingMove } = useContractWrite({
     address: contractAddress,
     abi: contractABI,
     functionName: 'makeMove',
     args: gameId ? [BigInt(gameId), 0, encryptedHand as `0x${string}`] : undefined,
   });
 
-  const { write: revealHand, data: revealHandData } = useContractWrite({
+  const { write: revealHand, isPending: isRevealingHand } = useContractWrite({
     address: contractAddress,
     abi: contractABI,
     functionName: 'revealHand',
     args: gameId ? [BigInt(gameId), encryptedHand as `0x${string}`] : undefined,
-  });
-
-  // Wait for transaction confirmations
-  const { isLoading: isCreatingGame } = useWaitForTransaction({
-    hash: createGameData?.hash,
-  });
-
-  const { isLoading: isJoiningGame } = useWaitForTransaction({
-    hash: joinGameData?.hash,
-  });
-
-  const { isLoading: isMakingMove } = useWaitForTransaction({
-    hash: makeMoveData?.hash,
-  });
-
-  const { isLoading: isRevealingHand } = useWaitForTransaction({
-    hash: revealHandData?.hash,
   });
 
   const handleCreateGame = () => {
