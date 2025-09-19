@@ -1,56 +1,71 @@
-# Vercel Deployment Guide for Crypto Showdown Ace
+# 🚀 Vercel Deployment Guide
 
-This guide provides step-by-step instructions for deploying the Crypto Showdown Ace application to Vercel.
+> **Deploy Crypto Showdown Ace to Vercel in minutes**
 
-## Prerequisites
+This comprehensive guide walks you through deploying your FHE-powered poker platform to Vercel with zero configuration.
 
-- Vercel account (free tier available)
-- GitHub repository access
-- Environment variables ready
+## 📋 Prerequisites
 
-## Step-by-Step Deployment
+- ✅ Vercel account (free tier available)
+- ✅ GitHub repository access  
+- ✅ Environment variables ready
+- ✅ Smart contracts deployed
 
-### 1. Prepare Your Repository
+## 🎯 Quick Deployment
 
-Ensure your code is pushed to GitHub:
+### Step 1: Repository Setup
+
+Ensure your code is committed and pushed:
+
 ```bash
+# Commit your changes
 git add .
 git commit -m "feat: Add FHE encryption and wallet integration"
 git push origin main
 ```
 
-### 2. Connect to Vercel
+### Step 2: Connect to Vercel
 
-1. Go to [vercel.com](https://vercel.com)
-2. Sign in with your GitHub account
-3. Click "New Project"
-4. Import your repository: `ethAsia55/crypto-showdown-ace`
+1. **Visit** [vercel.com](https://vercel.com)
+2. **Sign in** with your GitHub account
+3. **Click** "New Project"
+4. **Import** your repository: `ethAsia55/crypto-showdown-ace`
 
-### 3. Configure Build Settings
+### Step 3: Build Configuration
 
-**Framework Preset**: Vite
-**Root Directory**: `./` (default)
-**Build Command**: `npm run build`
-**Output Directory**: `dist`
-**Install Command**: `npm install`
+Configure your build settings:
 
-### 4. Environment Variables
+| Setting | Value |
+|---------|-------|
+| **Framework** | Vite |
+| **Root Directory** | `./` |
+| **Build Command** | `npm run build` |
+| **Output Directory** | `dist` |
+| **Install Command** | `npm install` |
 
-Add the following environment variables in Vercel dashboard:
+### Step 4: Environment Variables
 
-#### Required Variables:
+Add these environment variables in the Vercel dashboard:
+
+#### 🔧 Required Variables
+
+```env
+# Blockchain Configuration
+VITE_CHAIN_ID=11155111
+VITE_RPC_URL=https://sepolia.infura.io/v3/YOUR_INFURA_KEY
+VITE_WALLET_CONNECT_PROJECT_ID=YOUR_WALLET_CONNECT_PROJECT_ID
 ```
-NEXT_PUBLIC_CHAIN_ID=11155111
-NEXT_PUBLIC_RPC_URL=https://sepolia.infura.io/v3/b18fb7e6ca7045ac83c41157ab93f990
-NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=2ec9743d0d0cd7fb94dee1a7e6d33475
-```
 
-#### Optional Variables:
-```
-NEXT_PUBLIC_INFURA_API_KEY=b18fb7e6ca7045ac83c41157ab93f990
-NEXT_PUBLIC_RPC_URL=https://1rpc.io/sepolia
-NEXT_PUBLIC_CONTRACT_ADDRESS=YOUR_DEPLOYED_CONTRACT_ADDRESS
-NEXT_PUBLIC_ORACLE_ADDRESS=YOUR_ORACLE_ADDRESS
+#### 🔧 Optional Variables
+
+```env
+# Additional RPC Endpoints
+VITE_INFURA_API_KEY=YOUR_INFURA_API_KEY
+VITE_RPC_URL=https://1rpc.io/sepolia
+
+# Contract Addresses (after deployment)
+VITE_CONTRACT_ADDRESS=YOUR_DEPLOYED_CONTRACT_ADDRESS
+VITE_ORACLE_ADDRESS=YOUR_ORACLE_ADDRESS
 ```
 
 ### 5. Advanced Configuration
